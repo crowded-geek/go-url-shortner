@@ -6,8 +6,8 @@ import (
     "net/http"
     "time"
 
-    "../go-hashids"
-    "../mux"
+    "go-hashids"
+    "mux"
 )
 
 var m map[string]string
@@ -37,6 +37,7 @@ func handleRequests() {
 	m = make(map[string]string)
     router.HandleFunc("/{id}", Root).Methods("GET")
     router.HandleFunc("/create/", create).Methods("GET")
+    router.HandleFunc("/create", create).Methods("GET")
     log.Fatal(http.ListenAndServe(":8282", router))
 }
 
